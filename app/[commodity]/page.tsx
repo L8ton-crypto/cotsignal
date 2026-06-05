@@ -83,7 +83,7 @@ export default async function CommodityPage({ params }: PageProps) {
               Net positions in contracts. Commercials in green, noncommercials in rose.
             </p>
             <div className="mt-4">
-              <HistoryChart points={rows} />
+              <HistoryChart points={rows.map(r => ({ date: r.report_date, commercial_net: r.commercial_net, noncommercial_net: r.noncommercial_net }))} />
             </div>
           </section>
 
