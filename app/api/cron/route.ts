@@ -10,9 +10,12 @@ function defaultSince(): string {
   return d.toISOString().slice(0, 10);
 }
 
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+
 async function handler(req: Request) {
   const url = new URL(req.url);
-  const since = url.searchParams.get('since') || defaultSince();
+  const raw = url.searchParams.get('since');
+  const since = raw && ISO_DATE.test(raw) ? raw : defaultSince();
   const results = await ingestAll(since);
   const totals = results.reduce(
     (a, r) => ({
@@ -21,12 +24,7 @@ async function handler(req: Request) {
     }),
     { rows_seen: 0, rows_inserted: 0 }
   );
-  return NextResponse.json({
-    ok: true,
-    since,
-    totals,
-    results,
-  });
+  return NextResponse.json({ ok: true, since, totals, results });
 }
 
 export const GET = handler;
