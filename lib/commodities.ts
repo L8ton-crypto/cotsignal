@@ -41,7 +41,7 @@ export const COMMODITIES: Commodity[] = [
     category: 'Energy',
     unit: 'MMBtu',
     match: [
-      'NATURAL GAS - NEW YORK MERCANTILE EXCHANGE',
+      'NAT GAS NYME - NEW YORK MERCANTILE EXCHANGE',
       'HENRY HUB NATURAL GAS - NEW YORK MERCANTILE EXCHANGE',
     ],
     note: 'NYMEX Henry Hub futures. Commercials are pipelines, utilities and producers. Seasonal positioning swings are large.',
